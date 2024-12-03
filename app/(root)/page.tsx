@@ -1,13 +1,21 @@
 
+import SearchForm from "../../components/SearchForm";
 
-export default async function Home() {
-  const response = await fetch('https://jsonplaceholder.typicode.com/albums');
-  if(!response.ok) throw new Error('error while fetching album');
 
-  const albums = await response.json();
+export default async function Home({searchParams}:{searchparams:Promise<{query?:string}>}) {
+  const query = (await searchParams).query
   return (
     <>
-    <h1 className="text-2xl">Home</h1>
+    <section className="pink_container">
+
+    <h1 className="heading">Pitch Your Startup, <br /> Connect with Entrepreneurs</h1>
+    <p className="sub-heading !max-w-3xl">
+    Submit Ideas, Vote on Pitches, and Get Noticed in Virtual Competitions
+    </p>
+    <SearchForm
+    query={query}
+    />
+    </section>
     </>
   );
 }
